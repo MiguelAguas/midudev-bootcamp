@@ -61,17 +61,22 @@ const rootElement = document.getElementById("root");
     updateContador(contadorValue + 1)
   }, 10000) */
 
+  // funciones helper
+  // un componente puede crear funciones dentro de él mismo (helpers), utilidades, funciones dentro del componente.
+
+  const handleClick = () => {
+    setContador(contadorValue + 1)
+  }
+
   return <>
       <h6>esto es un H6</h6>
       <h1>Contador inicial: {contadorValue} </h1>
       <p>botón que incrementa el contador: pulse por favor!</p>
-      <button onClick={() => {
-        console.log('click');
-        setContador(contadorValue + 1)
-      }}>
+      <button 
+        onClick={handleClick}>
         Incrementar
       </button>
-        </>
+      </>
   
 }
 
