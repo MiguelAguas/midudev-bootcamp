@@ -24,18 +24,21 @@ const rootElement = document.getElementById("root");
   // sabiendo todo esto
   // podemos usar una técnica de JavaScript llamada desestructuración.
   // como ya sabemos que devuelve un estado, hacemos lo siguiente...
-//de una forma declarativa, estamos mostrando cosas en la UI
+// de una forma declarativa, estamos mostrando cosas en la UI
 // una vez que sabes que en userState tienes un array con 2 elementos
 // lo que hacemos es extraer diréctamente estas dos posicones donde están estos 2 elementos.
 
 // esto : 
 //******
-//const contador = useState(0) */
-//const contadorValue = contador[0]
-//const updateContador = contador[1]
+// const contador = useState(0) */
+// const contadorValue = contador[0]
+// const updateContador = contador[1]
 //*********************************** */
 
 // es lo mismo que esto:
+// contadorValue  el valor del estado
+// setContador método, que al ejecutarlo podemos actualizar el estado.
+// ****
   const [contadorValue, setContador] = useState(0)
 
   // lo de los intervalos es peligroso
@@ -62,20 +65,41 @@ const rootElement = document.getElementById("root");
   }, 10000) */
 
   // funciones helper
-  // un componente puede crear funciones dentro de él mismo (helpers), utilidades, funciones dentro del componente.
+  // un componente puede crear funciones dentro de él mismo (helpers) o llamadas utilidades, funciones dentro del componente.
 
+  // extraemos el eventHandler en una función
   const handleClick = () => {
     setContador(contadorValue + 1)
   }
 
+  // creamos el helper para el botón de resetear contador
+  const handleResetClick = () => {
+    setContador(0)
+  }
+
+  // renderizado condicional
+  // dependiendo de la evalución de algo, queremos renderizar una cosa u otra
+
+  //para saber si un número es par, el resto de la división de ese número entre 2, tiene que ser 0.
+
+  const isEven = contadorValue % 2 === 0
+
+
   return <>
       <h6>esto es un H6</h6>
       <h1>Contador inicial: {contadorValue} </h1>
+      <p>{isEven ? "Es par" : "Es Impar"}</p>
       <p>botón que incrementa el contador: pulse por favor!</p>
       <button 
         onClick={handleClick}>
         Incrementar
       </button>
+      <p>botón que resetea el contador: pulse por favor!</p>
+      <button
+        onClick={handleResetClick}
+        >
+          Reset
+        </button>
       </>
   
 }
