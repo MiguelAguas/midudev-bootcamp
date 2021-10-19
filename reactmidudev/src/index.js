@@ -5,6 +5,11 @@ import { useState } from 'react';
 // O puedes declararte una const rootElement donde guardes el document.getElementById
 const rootElement = document.getElementById("root");
 
+const Counter = ({ number }) => {
+  console.log("Counter Render");
+  return <h1>Contador: {number}</h1>
+}
+
  const App = (props) => {
   //let contador = 0
 
@@ -69,7 +74,10 @@ const rootElement = document.getElementById("root");
 
   // extraemos el eventHandler en una función
   const handleClick = () => {
-    setContador(contadorValue + 1)
+    //setContador(contadorValue + 1)
+    setContador((prevContador) => {
+      return prevContador + 1;
+    })
   }
 
   // creamos el helper para el botón de resetear contador
@@ -87,7 +95,7 @@ const rootElement = document.getElementById("root");
 
   return <>
       <h6>esto es un H6</h6>
-      <h1>Contador inicial: {contadorValue} </h1>
+      <Counter number={contadorValue} />
       <p>{isEven ? "Es par" : "Es Impar"}</p>
       <p>botón que incrementa el contador: pulse por favor!</p>
       <button 
